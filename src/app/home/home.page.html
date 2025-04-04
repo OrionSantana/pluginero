@@ -1,0 +1,11 @@
+<ion-button (click)="getLocation()">Obtener Ubicación</ion-button>
+
+<ion-card *ngIf="location">
+  <ion-card-header>
+    <ion-card-title>Ubicación Actual</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    Latitud: {{ location.lat }} <br>
+    Longitud: {{ location.lng }}
+  </ion-card-content>
+</ion-card>
