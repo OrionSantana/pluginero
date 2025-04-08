@@ -7,6 +7,8 @@ import {
 } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Camera, CameraResultType } from '@capacitor/camera';
+import { Network } from '@capacitor/network';
 
 @Component({
   selector: 'app-home',
@@ -27,4 +29,14 @@ export class HomePage {
   async getLocation() {
     this.location = await this.geolocationService.getCurrentPosition();
   }
+
+  takePhoto = async () => {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.DataUrl,
+    });
+
+    console.log(image.dataUrl);
+  };
 }
