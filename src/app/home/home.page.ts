@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Camera, CameraResultType } from '@capacitor/camera';
 import { Network } from '@capacitor/network';
+import { Keyboard, KeyboardInfo } from '@capacitor/keyboard';
 
 @Component({
   selector: 'app-home',
@@ -24,7 +25,7 @@ import { Network } from '@capacitor/network';
 export class HomePage {
   location: { lat: number, lng: number } | null = null;
 
-  constructor(private geolocationService: GeolocationService) {}
+  constructor(private geolocationService: GeolocationService, private keyboard: KeyboardInfo) {}
 
   async getLocation() {
     this.location = await this.geolocationService.getCurrentPosition();
@@ -39,4 +40,11 @@ export class HomePage {
 
     console.log(image.dataUrl);
   };
+
+  logCurrentNetworkStatus = async () => {
+    const status = await Network.getStatus();
+  
+    console.log('Network status:', status);
+  };
+
 }
